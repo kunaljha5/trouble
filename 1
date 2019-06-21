@@ -1,0 +1,540 @@
+
+kunal@kunal-VirtualBox:~$
+kunal@kunal-VirtualBox:~$ docker images
+REPOSITORY          TAG                  IMAGE ID            CREATED             SIZE
+<none>              <none>               f38d3ccf18d7        About an hour ago   5.53MB
+node_base           latest               410716ffea74        8 hours ago         643MB
+node                8.16-jessie          eebba34b1fc4        2 days ago          676MB
+buildpack-deps      jessie-scm           ff4716f45595        10 days ago         294MB
+nginx               latest               719cd2e3ed04        10 days ago         109MB
+node                carbon-jessie-slim   b014ddc88368        10 days ago         183MB
+debian              jessie               d69ffb5f6cbf        10 days ago         129MB
+node                8.16.0-alpine        e08ba08cf75a        2 weeks ago         66.7MB
+alpine              3.9                  055936d39205        5 weeks ago         5.53MB
+kunal@kunal-VirtualBox:~$ docker pull alpine
+Using default tag: latest
+latest: Pulling from library/alpine
+921b31ab772b: Pull complete
+Digest: sha256:ca1c944a4f8486a153024d9965aafbe24f5723c1d5c02f4964c045a16d19dc54
+Status: Downloaded newer image for alpine:latest
+kunal@kunal-VirtualBox:~$  docker run -it --name=61 alpine
+/ #
+/ # apk update
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/community/x86_64/APKINDEX.tar.gz
+v3.10.0-1-gbcc49b4c70 [http://dl-cdn.alpinelinux.org/alpine/v3.10/main]
+v3.10.0-2-gdf3d886d1e [http://dl-cdn.alpinelinux.org/alpine/v3.10/community]
+OK: 10327 distinct packages available
+/ # echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories \
+> && echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
+/ # apk update
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+v3.10.0-1-gbcc49b4c70 [http://dl-cdn.alpinelinux.org/alpine/v3.10/main]
+v3.10.0-2-gdf3d886d1e [http://dl-cdn.alpinelinux.org/alpine/v3.10/community]
+v3.10.0-173-g58e96ce5b9 [http://nl.alpinelinux.org/alpine/edge/community]
+v3.10.0-146-g6ec751c7da [http://nl.alpinelinux.org/alpine/edge/main]
+OK: 20662 distinct packages available
+/ #
+/ #
+/ #
+/ # apk add --no-cache    ttf-freefont@edge freetype@edge
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+(1/10) Installing libbz2 (1.0.6-r6)
+(2/10) Installing libpng (1.6.37-r1)
+(3/10) Installing freetype@edge (2.10.0-r0)
+(4/10) Installing expat (2.2.6-r0)
+(5/10) Installing libuuid (2.33.2-r0)
+(6/10) Installing fontconfig (2.13.1-r0)
+(7/10) Installing encodings (1.0.4-r1)
+(8/10) Installing libfontenc (1.1.4-r0)
+(9/10) Installing mkfontscale (1.2.1-r1)
+(10/10) Installing ttf-freefont@edge (20120503-r1)
+Executing busybox-1.30.1-r2.trigger
+Executing fontconfig-2.13.1-r0.trigger
+Executing mkfontscale-1.2.1-r1.trigger
+OK: 19 MiB in 24 packages
+/ # ls r-lth
+ls: r-lth: No such file or directory
+/ # ls -rlth
+total 72K
+drwxr-xr-x    1 root     root        4.0K Jun 19 17:14 var
+drwxr-xr-x    1 root     root        4.0K Jun 19 17:14 usr
+drwxrwxrwt    2 root     root        4.0K Jun 19 17:14 tmp
+drwxr-xr-x    2 root     root        4.0K Jun 19 17:14 srv
+drwxr-xr-x    2 root     root        4.0K Jun 19 17:14 sbin
+drwxr-xr-x    2 root     root        4.0K Jun 19 17:14 run
+drwxr-xr-x    2 root     root        4.0K Jun 19 17:14 opt
+drwxr-xr-x    2 root     root        4.0K Jun 19 17:14 mnt
+drwxr-xr-x    5 root     root        4.0K Jun 19 17:14 media
+drwxr-xr-x    2 root     root        4.0K Jun 19 17:14 home
+drwxr-xr-x    2 root     root        4.0K Jun 19 17:14 bin
+dr-xr-xr-x  266 root     root           0 Jun 21 05:01 proc
+dr-xr-xr-x   13 root     root           0 Jun 21 05:01 sys
+drwxr-xr-x    5 root     root         360 Jun 21 05:01 dev
+drwx------    1 root     root        4.0K Jun 21 05:01 root
+drwxr-xr-x    1 root     root        4.0K Jun 21 05:05 lib
+drwxr-xr-x    1 root     root        4.0K Jun 21 05:05 etc
+/ # vim 1.sh
+/bin/sh: vim: not found
+/ # vi 1.sh
+/ # chmod +x 1.sh
+/ # ./1.sh
++ apk add --no-cache nss@edge harfbuzz@edge
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+(1/13) Installing libgcc (8.3.0-r0)
+(2/13) Installing libffi (3.2.1-r6)
+(3/13) Installing libintl (0.19.8.1-r4)
+(4/13) Installing libblkid (2.33.2-r0)
+(5/13) Installing libmount (2.33.2-r0)
+(6/13) Installing pcre (8.43-r0)
+(7/13) Installing glib (2.60.4-r0)
+(8/13) Installing graphite2 (1.3.13-r1)
+(9/13) Installing harfbuzz@edge (2.5.1-r0)
+(10/13) Installing nspr (4.20-r0)
+(11/13) Installing sqlite-libs (3.28.0-r0)
+(12/13) Installing libstdc++ (8.3.0-r0)
+(13/13) Installing nss@edge (3.44-r0)
+Executing busybox-1.30.1-r2.trigger
+OK: 30 MiB in 37 packages
++ apk add --no-cache chromium@edge
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+(1/79) Installing eudev-libs (3.2.8-r0)
+(2/79) Installing ttf-opensans (1.10-r0)
+Executing ttf-opensans-1.10-r0.post-install
+(3/79) Installing libogg (1.3.3-r2)
+(4/79) Installing flac (1.3.2-r2)
+(5/79) Installing libxau (1.0.9-r0)
+(6/79) Installing libbsd (0.9.1-r0)
+(7/79) Installing libxdmcp (1.1.3-r0)
+(8/79) Installing libxcb (1.13.1-r0)
+(9/79) Installing libx11 (1.6.8-r0)
+(10/79) Installing libxcomposite (0.4.5-r0)
+(11/79) Installing libxfixes (5.0.3-r2)
+(12/79) Installing libxrender (0.9.10-r3)
+(13/79) Installing libxcursor (1.2.0-r0)
+(14/79) Installing libxdamage (1.1.5-r0)
+(15/79) Installing libxext (1.3.4-r0)
+(16/79) Installing libxi (1.7.9-r2)
+(17/79) Installing libxrandr (1.5.2-r0)
+(18/79) Installing libxscrnsaver (1.2.3-r0)
+(19/79) Installing libxtst (1.2.3-r3)
+(20/79) Installing alsa-lib (1.1.9-r0)
+(21/79) Installing atk (2.32.0-r0)
+(22/79) Installing dbus-libs (1.12.16-r0)
+(23/79) Installing at-spi2-core (2.32.1-r0)
+(24/79) Installing at-spi2-atk (2.32.0-r0)
+(25/79) Installing sdl2 (2.0.9-r0)
+(26/79) Installing fribidi (1.0.5-r1)
+(27/79) Installing libass (0.14.0-r0)
+(28/79) Installing gmp (6.1.2-r1)
+(29/79) Installing nettle (3.4.1-r1)
+(30/79) Installing p11-kit (0.23.16.1-r0)
+(31/79) Installing libtasn1 (4.13-r0)
+(32/79) Installing libunistring (0.9.10-r0)
+(33/79) Installing gnutls (3.6.8-r0)
+(34/79) Installing ncurses-terminfo-base (6.1_p20190518-r0)
+(35/79) Installing ncurses-terminfo (6.1_p20190518-r0)
+(36/79) Installing ncurses-libs (6.1_p20190518-r0)
+(37/79) Installing lame (3.100-r0)
+(38/79) Installing opus (1.3.1-r0)
+(39/79) Installing libtheora (1.1.1-r14)
+(40/79) Installing libjpeg-turbo (2.0.2-r0)
+(41/79) Installing v4l-utils-libs (1.16.6-r0)
+(42/79) Installing libpciaccess (0.14-r0)
+(43/79) Installing libdrm (2.4.98-r0)
+(44/79) Installing wayland-libs-client (1.17.0-r0)
+(45/79) Installing libva (2.4.1-r0)
+(46/79) Installing libvdpau (1.2-r0)
+(47/79) Installing libvorbis (1.3.6-r2)
+(48/79) Installing libvpx (1.8.0-r0)
+(49/79) Installing x264-libs (20180304-r1)
+(50/79) Installing x265-libs (3.0-r0)
+(51/79) Installing xvidcore (1.3.4-r1)
+(52/79) Installing ffmpeg-libs (4.1.3-r1)
+(53/79) Installing pixman (0.38.4-r0)
+(54/79) Installing cairo (1.16.0-r2)
+(55/79) Installing avahi-libs (0.7-r1)
+(56/79) Installing cups-libs (2.2.11-r0)
+(57/79) Installing libevent (2.1.10-r0)
+(58/79) Installing libxml2 (2.9.9-r2)
+(59/79) Installing shared-mime-info (1.12-r0)
+(60/79) Installing hicolor-icon-theme (0.17-r0)
+(61/79) Installing tiff (4.0.10-r0)
+(62/79) Installing gdk-pixbuf (2.38.1-r0)
+(63/79) Installing gtk-update-icon-cache (2.24.32-r1)
+(64/79) Installing libxinerama (1.1.4-r1)
+(65/79) Installing cairo-gobject (1.16.0-r2)
+(66/79) Installing libepoxy (1.5.3-r0)
+(67/79) Installing libxft (2.3.3-r0)
+(68/79) Installing pango (1.42.4-r1)
+(69/79) Installing wayland-libs-cursor (1.17.0-r0)
+(70/79) Installing wayland-libs-egl (1.17.0-r0)
+(71/79) Installing libxkbcommon (0.8.4-r0)
+(72/79) Installing gtk+3.0 (3.24.8-r0)
+Executing gtk+3.0-3.24.8-r0.post-install
+(73/79) Installing re2 (2019.06.01-r0)
+(74/79) Installing snappy (1.1.7-r1)
+(75/79) Installing libwebp (1.0.2-r0)
+(76/79) Installing libgpg-error (1.36-r2)
+(77/79) Installing libgcrypt (1.8.4-r1)
+(78/79) Installing libxslt (1.1.33-r1)
+(79/79) Installing chromium@edge (73.0.3683.103-r0)
+Executing busybox-1.30.1-r2.trigger
+Executing fontconfig-2.13.1-r0.trigger
+Executing mkfontscale-1.2.1-r1.trigger
+Executing glib-2.60.4-r0.trigger
+Executing shared-mime-info-1.12-r0.trigger
+Executing gdk-pixbuf-2.38.1-r0.trigger
+Executing gtk-update-icon-cache-2.24.32-r1.trigger
+OK: 314 MiB in 116 packages
++ apk add --no-cache xvfb fluxbox tmux x11vnc st
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+(1/36) Installing giflib (5.1.9-r0)
+(2/36) Installing libid3tag (0.15.1b-r7)
+(3/36) Installing imlib2 (1.5.1-r0)
+(4/36) Installing libice (1.0.9-r3)
+(5/36) Installing libsm (1.2.3-r0)
+(6/36) Installing libxt (1.1.5-r2)
+(7/36) Installing libxpm (3.5.12-r0)
+(8/36) Installing fluxbox (1.3.7-r3)
+(9/36) Installing st (0.8.2-r0)
+(10/36) Installing tmux (2.9a-r0)
+(11/36) Installing libvncserver (0.9.11-r2)
+(12/36) Installing x11vnc (0.9.14-r5)
+(13/36) Installing font-alias (1.0.3-r1)
+(14/36) Installing util-macros (1.19.2-r0)
+(15/36) Installing font-misc-misc (1.1.2-r1)
+(16/36) Installing font-cursor-misc (1.0.3-r1)
+(17/36) Installing xkeyboard-config (2.27-r0)
+(18/36) Installing libxkbfile (1.1.0-r0)
+(19/36) Installing xkbcomp (1.4.2-r0)
+(20/36) Installing libxmu (1.1.3-r0)
+(21/36) Installing xauth (1.0.10-r1)
+(22/36) Installing libsmartcols (2.33.2-r0)
+(23/36) Installing findmnt (2.33.2-r0)
+(24/36) Installing mcookie (2.33.2-r0)
+(25/36) Installing xmodmap (1.0.10-r0)
+(26/36) Installing mcpp-libs (2.7.2-r1)
+(27/36) Installing mcpp (2.7.2-r1)
+(28/36) Installing xrdb (1.2.0-r0)
+(29/36) Installing xinit (1.4.1-r0)
+(30/36) Installing mesa (19.0.6-r0)
+(31/36) Installing libxxf86vm (1.1.4-r2)
+(32/36) Installing mesa-glapi (19.0.6-r0)
+(33/36) Installing libxshmfence (1.3-r0)
+(34/36) Installing mesa-gl (19.0.6-r0)
+(35/36) Installing libxfont2 (2.0.3-r2)
+(36/36) Installing xvfb (1.20.5-r0)
+Executing busybox-1.30.1-r2.trigger
+Executing fontconfig-2.13.1-r0.trigger
+Executing mkfontscale-1.2.1-r1.trigger
+OK: 333 MiB in 152 packages
++ apk add --no-cache ansible
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+(1/19) Installing gdbm (1.13-r1)
+(2/19) Installing xz-libs (5.2.4-r0)
+(3/19) Installing readline (8.0.0-r0)
+(4/19) Installing python3 (3.7.3-r0)
+(5/19) Installing py3-yaml (5.1.1-r0)
+(6/19) Installing py3-asn1 (0.4.5-r2)
+(7/19) Installing py3-cparser (2.19-r2)
+(8/19) Installing py3-cffi (1.11.5-r4)
+(9/19) Installing py3-idna (2.8-r1)
+(10/19) Installing py3-asn1crypto (0.24.0-r1)
+(11/19) Installing py3-six (1.12.0-r1)
+(12/19) Installing py3-cryptography (2.6.1-r1)
+(13/19) Installing py3-bcrypt (3.1.6-r1)
+(14/19) Installing py3-pynacl (1.3.0-r2)
+(15/19) Installing py3-paramiko (2.4.2-r1)
+(16/19) Installing py3-markupsafe (1.1.1-r1)
+(17/19) Installing py3-jinja2 (2.10-r3)
+(18/19) Installing py3-crypto (2.6.1-r3)
+(19/19) Installing ansible (2.8.1-r0)
+Executing busybox-1.30.1-r2.trigger
+OK: 499 MiB in 171 packages
++ apk add --no-cache libressl-dev
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+(1/5) Installing libressl2.7-libcrypto (2.7.5-r0)
+(2/5) Installing libressl2.7-libssl (2.7.5-r0)
+(3/5) Installing libressl2.7-libtls (2.7.5-r0)
+(4/5) Installing pkgconf (1.6.1-r1)
+(5/5) Installing libressl-dev (2.7.5-r0)
+Executing busybox-1.30.1-r2.trigger
+OK: 518 MiB in 176 packages
++ apk add --no-cache alpine-sdk libressl-dev xvfb fluxbox tmux x11vnc st bzip2 python python2-dev ansible
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+fetch http://nl.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+(1/36) Installing fakeroot (1.23-r0)
+(2/36) Installing sudo (1.8.27-r0)
+(3/36) Installing libcap (2.27-r0)
+(4/36) Installing pax-utils (1.2.3-r0)
+(5/36) Installing openssl (1.1.1c-r0)
+(6/36) Installing libattr (2.4.48-r0)
+(7/36) Installing attr (2.4.48-r0)
+(8/36) Installing tar (1.32-r0)
+(9/36) Installing patch (2.7.6-r4)
+(10/36) Installing lzip (1.21-r0)
+(11/36) Installing ca-certificates (20190108-r0)
+(12/36) Installing nghttp2-libs (1.38.0-r0)
+(13/36) Installing libcurl (7.65.1-r0)
+(14/36) Installing curl (7.65.1-r0)
+(15/36) Installing abuild (3.4.0-r0)
+Executing abuild-3.4.0-r0.pre-install
+(16/36) Installing binutils (2.32-r0)
+(17/36) Installing libmagic (5.37-r0)
+(18/36) Installing file (5.37-r0)
+(19/36) Installing isl (0.18-r0)
+(20/36) Installing libgomp (8.3.0-r0)
+(21/36) Installing libatomic (8.3.0-r0)
+(22/36) Installing mpfr3 (3.1.5-r1)
+(23/36) Installing mpc1 (1.1.0-r0)
+(24/36) Installing gcc (8.3.0-r0)
+(25/36) Installing musl-dev (1.1.22-r2)
+(26/36) Installing libc-dev (0.7.1-r0)
+(27/36) Installing g++ (8.3.0-r0)
+(28/36) Installing make (4.2.1-r2)
+(29/36) Installing fortify-headers (1.1-r0)
+(30/36) Installing build-base (0.5-r1)
+(31/36) Installing pcre2 (10.33-r0)
+(32/36) Installing git (2.22.0-r0)
+(33/36) Installing alpine-sdk (1.0-r0)
+(34/36) Installing bzip2 (1.0.6-r6)
+(35/36) Installing python2 (2.7.16-r1)
+(36/36) Installing python2-dev (2.7.16-r1)
+Executing busybox-1.30.1-r2.trigger
+Executing ca-certificates-20190108-r0.trigger
+OK: 740 MiB in 212 packages
++ pip install awscli boto boto3
+./1.sh: line 9: pip: not found
+/ #
+/ #
+/ #
+/ #
+/ # pip
+/bin/sh: pip: not found
+/ # apk add py-pip
+(1/3) Installing py-setuptools (40.8.0-r1)
+(2/3) Installing py3-setuptools (40.8.0-r1)
+(3/3) Installing py2-pip (18.1-r0)
+Executing busybox-1.30.1-r2.trigger
+OK: 755 MiB in 215 packages
+/ #  pip install awscli boto boto3
+Collecting awscli
+  Downloading https://files.pythonhosted.org/packages/0f/94/0eecc323bca6702327a751cb5aeff713a21a05d0e4952b0cfaf9922031be/awscli-1.16.183-py2.py3-none-any.whl (1.7MB)
+    100% |████████████████████████████████| 1.7MB 222kB/s
+Collecting boto
+  Downloading https://files.pythonhosted.org/packages/23/10/c0b78c27298029e4454a472a1919bde20cb182dab1662cec7f2ca1dcc523/boto-2.49.0-py2.py3-none-any.whl (1.4MB)
+    100% |████████████████████████████████| 1.4MB 288kB/s
+Collecting boto3
+  Downloading https://files.pythonhosted.org/packages/43/bd/eaa273e81e40d2604bd5473a80e040c6943a2f79a18896a65e7296f9fea2/boto3-1.9.173-py2.py3-none-any.whl (128kB)
+    100% |████████████████████████████████| 133kB 399kB/s
+Collecting s3transfer<0.3.0,>=0.2.0 (from awscli)
+  Downloading https://files.pythonhosted.org/packages/16/8a/1fc3dba0c4923c2a76e1ff0d52b305c44606da63f718d14d3231e21c51b0/s3transfer-0.2.1-py2.py3-none-any.whl (70kB)
+    100% |████████████████████████████████| 71kB 483kB/s
+Collecting docutils>=0.10 (from awscli)
+  Downloading https://files.pythonhosted.org/packages/50/09/c53398e0005b11f7ffb27b7aa720c617aba53be4fb4f4f3f06b9b5c60f28/docutils-0.14-py2-none-any.whl (543kB)
+    100% |████████████████████████████████| 552kB 259kB/s
+Collecting PyYAML<=5.1,>=3.10; python_version != "2.6" (from awscli)
+  Downloading https://files.pythonhosted.org/packages/9f/2c/9417b5c774792634834e730932745bc09a7d36754ca00acf1ccd1ac2594d/PyYAML-5.1.tar.gz (274kB)
+    100% |████████████████████████████████| 276kB 244kB/s
+Collecting colorama<=0.3.9,>=0.2.5 (from awscli)
+  Downloading https://files.pythonhosted.org/packages/db/c8/7dcf9dbcb22429512708fe3a547f8b6101c0d02137acbd892505aee57adf/colorama-0.3.9-py2.py3-none-any.whl
+Collecting rsa<=3.5.0,>=3.1.2 (from awscli)
+  Downloading https://files.pythonhosted.org/packages/e1/ae/baedc9cb175552e95f3395c43055a6a5e125ae4d48a1d7a924baca83e92e/rsa-3.4.2-py2.py3-none-any.whl (46kB)
+    100% |████████████████████████████████| 51kB 369kB/s
+Collecting botocore==1.12.173 (from awscli)
+  Downloading https://files.pythonhosted.org/packages/af/bb/226c21c8ff37c620412280e71dd7b0135c50d380ac212e3cd0c34d4bc6ef/botocore-1.12.173-py2.py3-none-any.whl (5.6MB)
+    100% |████████████████████████████████| 5.6MB 221kB/s
+Collecting jmespath<1.0.0,>=0.7.1 (from boto3)
+  Downloading https://files.pythonhosted.org/packages/83/94/7179c3832a6d45b266ddb2aac329e101367fbdb11f425f13771d27f225bb/jmespath-0.9.4-py2.py3-none-any.whl
+Collecting futures<4.0.0,>=2.2.0; python_version == "2.6" or python_version == "2.7" (from s3transfer<0.3.0,>=0.2.0->awscli)
+  Downloading https://files.pythonhosted.org/packages/2d/99/b2c4e9d5a30f6471e410a146232b4118e697fa3ffc06d6a65efde84debd0/futures-3.2.0-py2-none-any.whl
+Collecting pyasn1>=0.1.3 (from rsa<=3.5.0,>=3.1.2->awscli)
+  Downloading https://files.pythonhosted.org/packages/7b/7c/c9386b82a25115cccf1903441bba3cbadcfae7b678a20167347fa8ded34c/pyasn1-0.4.5-py2.py3-none-any.whl (73kB)
+    100% |████████████████████████████████| 81kB 437kB/s
+Collecting urllib3<1.26,>=1.20; python_version == "2.7" (from botocore==1.12.173->awscli)
+  Downloading https://files.pythonhosted.org/packages/e6/60/247f23a7121ae632d62811ba7f273d0e58972d75e58a94d329d51550a47d/urllib3-1.25.3-py2.py3-none-any.whl (150kB)
+    100% |████████████████████████████████| 153kB 515kB/s
+Collecting python-dateutil<3.0.0,>=2.1; python_version >= "2.7" (from botocore==1.12.173->awscli)
+  Downloading https://files.pythonhosted.org/packages/41/17/c62faccbfbd163c7f57f3844689e3a78bae1f403648a6afb1d0866d87fbb/python_dateutil-2.8.0-py2.py3-none-any.whl (226kB)
+    100% |████████████████████████████████| 235kB 723kB/s
+Collecting six>=1.5 (from python-dateutil<3.0.0,>=2.1; python_version >= "2.7"->botocore==1.12.173->awscli)
+  Downloading https://files.pythonhosted.org/packages/73/fb/00a976f728d0d1fecfe898238ce23f502a721c0ac0ecfedb80e0d88c64e9/six-1.12.0-py2.py3-none-any.whl
+Installing collected packages: futures, urllib3, six, python-dateutil, jmespath, docutils, botocore, s3transfer, PyYAML, colorama, pyasn1, rsa, awscli, boto, boto3
+  Running setup.py install for PyYAML ... done
+Successfully installed PyYAML-5.1 awscli-1.16.183 boto-2.49.0 boto3-1.9.173 botocore-1.12.173 colorama-0.3.9 docutils-0.14 futures-3.2.0 jmespath-0.9.4 pyasn1-0.4.5 python-dateutil-2.8.0 rsa-3.4.2 s3transfer-0.2.1 six-1.12.0 urllib3-1.25.3
+/ # apk install nodejs
+ERROR: 'install' is not an apk command. See 'apk --help'.
+/ # apk add nodejs
+(1/4) Installing c-ares (1.15.0-r0)
+(2/4) Installing http-parser (2.9.2-r0)
+(3/4) Installing libuv (1.29.1-r0)
+(4/4) Installing nodejs (10.16.0-r0)
+Executing busybox-1.30.1-r2.trigger
+OK: 779 MiB in 219 packages
+/ #     && npm install -g typescript
+/bin/sh: syntax error: unexpected "&&"
+/ #     npm install -g typescript
+/bin/sh: npm: not found
+/ # apk add npm
+(1/1) Installing npm (10.16.0-r0)
+Executing busybox-1.30.1-r2.trigger
+OK: 807 MiB in 220 packages
+/ #     npm install -g typescript
+/usr/bin/tsc -> /usr/lib/node_modules/typescript/bin/tsc
+/usr/bin/tsserver -> /usr/lib/node_modules/typescript/bin/tsserver
++ typescript@3.5.2
+added 1 package from 1 contributor in 43.623s
+/ #
+/ # npm install -g karma-jasmine
+npm WARN karma-jasmine@2.0.1 requires a peer of karma@* but none is installed. You must install peer dependencies yourself.
+
++ karma-jasmine@2.0.1
+added 2 packages from 35 contributors in 1.283s
+/ # npm install -g karma-chrome-launcher
++ karma-chrome-launcher@2.2.0
+added 5 packages from 30 contributors in 1.686s
+/ # npm install -g karma-jasmine-html-reporter
+npm WARN karma-jasmine-html-reporter@1.4.2 requires a peer of karma@>=0.9 but none is installed. You must install peer dependencies yourself.
+npm WARN karma-jasmine-html-reporter@1.4.2 requires a peer of karma-jasmine@>=1.1 but none is installed. You must install peer dependencies yourself.
+npm WARN karma-jasmine-html-reporter@1.4.2 requires a peer of jasmine-core@>=3.3 but none is installed. You must install peer dependencies yourself.
+
++ karma-jasmine-html-reporter@1.4.2
+added 1 package from 5 contributors in 0.887s
+/ # npm install -g karma-coverage-istanbul-reporter
+npm ERR! code ENOTFOUND
+npm ERR! errno ENOTFOUND
+npm ERR! network request to https://registry.npmjs.org/istanbul-lib-report failed, reason: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+npm ERR! network This is a problem related to network connectivity.
+npm ERR! network In most cases you are behind a proxy or have bad network settings.
+npm ERR! network
+npm ERR! network If you are behind a proxy, please make sure that the
+npm ERR! network 'proxy' config is set properly.  See: 'npm help config'
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2019-06-21T05_37_32_428Z-debug.log
+/ # npm install -g karma
+npm ERR! code ENOTFOUND
+npm ERR! errno ENOTFOUND
+npm ERR! network request to https://registry.npmjs.org/connect failed, reason: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+npm ERR! network This is a problem related to network connectivity.
+npm ERR! network In most cases you are behind a proxy or have bad network settings.
+npm ERR! network
+npm ERR! network If you are behind a proxy, please make sure that the
+npm ERR! network 'proxy' config is set properly.  See: 'npm help config'
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2019-06-21T05_37_48_674Z-debug.log
+/ # ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: seq=0 ttl=50 time=67.557 ms
+64 bytes from 8.8.8.8: seq=1 ttl=50 time=18.851 ms
+^C
+--- 8.8.8.8 ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 18.851/43.204/67.557 ms
+/ # ping www.google.com
+PING www.google.com (172.217.167.36): 56 data bytes
+64 bytes from 172.217.167.36: seq=0 ttl=52 time=19.659 ms
+64 bytes from 172.217.167.36: seq=1 ttl=52 time=17.641 ms
+64 bytes from 172.217.167.36: seq=2 ttl=52 time=20.766 ms
+^C
+--- www.google.com ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 17.641/19.355/20.766 ms
+/ # ping registry.npmjs.org
+PING registry.npmjs.org (104.16.25.35): 56 data bytes
+64 bytes from 104.16.25.35: seq=0 ttl=53 time=58.691 ms
+64 bytes from 104.16.25.35: seq=1 ttl=53 time=62.313 ms
+^C
+--- registry.npmjs.org ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 58.691/60.502/62.313 ms
+/ # vi /etc/network/if-
+if-down.d/       if-post-down.d/  if-post-up.d/    if-pre-down.d/   if-pre-up.d/     if-up.d/
+/ # vi /etc/network/if-^C
+/ # npm cache clean --force
+npm WARN using --force I sure hope you know what you are doing.
+/ # npm install -g karma
+npm ERR! code ENOTFOUND
+npm ERR! errno ENOTFOUND
+npm ERR! network request to https://registry.npmjs.org/core-js failed, reason: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+npm ERR! network This is a problem related to network connectivity.
+npm ERR! network In most cases you are behind a proxy or have bad network settings.
+npm ERR! network
+npm ERR! network If you are behind a proxy, please make sure that the
+npm ERR! network 'proxy' config is set properly.  See: 'npm help config'
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2019-06-21T05_40_57_324Z-debug.log
+/ # npm config set registry https://registry.npmjs.org/
+/ # npm install -g karma
+npm ERR! code ENOTFOUND
+npm ERR! errno ENOTFOUND
+npm ERR! network request to https://registry.npmjs.org/lodash failed, reason: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+npm ERR! network This is a problem related to network connectivity.
+npm ERR! network In most cases you are behind a proxy or have bad network settings.
+npm ERR! network
+npm ERR! network If you are behind a proxy, please make sure that the
+npm ERR! network 'proxy' config is set properly.  See: 'npm help config'
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2019-06-21T05_41_14_197Z-debug.log
+/ # npm config set registry https://registry.npmjs.org/^C
+/ #
+/ #
+/ #     npm config delete proxy
+/ #
+/ # npm install -g karma
+npm ERR! code ENOTFOUND
+npm ERR! errno ENOTFOUND
+npm ERR! network request to https://registry.npmjs.org/iconv-lite failed, reason: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+npm ERR! network This is a problem related to network connectivity.
+npm ERR! network In most cases you are behind a proxy or have bad network settings.
+npm ERR! network
+npm ERR! network If you are behind a proxy, please make sure that the
+npm ERR! network 'proxy' config is set properly.  See: 'npm help config'
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2019-06-21T05_41_49_555Z-debug.log
+/ # npm config rm proxy
+/ # npm config rm https-proxy
+/ # npm config --global rm proxy
+/ # npm config --global rm https-proxy
+/ # npm install -g karma
+npm ERR! code ENOTFOUND
+npm ERR! errno ENOTFOUND
+npm ERR! network request to https://registry.npmjs.org/to-regex failed, reason: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+npm ERR! network This is a problem related to network connectivity.
+npm ERR! network In most cases you are behind a proxy or have bad network settings.
+npm ERR! network
+npm ERR! network If you are behind a proxy, please make sure that the
+npm ERR! network 'proxy' config is set properly.  See: 'npm help config'
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2019-06-21T05_42_38_837Z-debug.log
+/ #
+
