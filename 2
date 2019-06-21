@@ -1,2 +1,26 @@
-https://git.softrams.io/projects/PUB/repos/devops-assesment/browse/Lvl2/Dockerfile
 
+FROM alpine
+
+RUN set -x \
+        && echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories \
+        && echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories \
+        && apk update \
+        && apk add --no-cache nss@edge harfbuzz@edge chromium@edge alpine-sdk libressl-dev xvfb fluxbox tmux x11vnc st bzip2 python python2-dev ansible py-pip nodejs npm  \
+        &&  pip install  boto boto3 awscli
+ADD scripts/xvfb-chrome /usr/bin/xvfb-chrome
+
+RUN ln -sf /usr/bin/xvfb-chrome /usr/bin/google-chrome \
+    && npm install -g @angular/cli --unsafe-perm \
+    && npm install -g istanbul \
+    && npm install -g jasmine-node \
+    && npm install -g jasmine-core@* \
+    && npm install -g karma \
+    && npm install -g karma-coverage-istanbul-reporter \
+    && npm install -g karma-jasmine-html-reporter \
+    && npm install -g karma-chrome-launcher \
+    && npm install -g karma-jasmine \
+    && npm install -g typescript \
+    && rm -fr /var/cache/apk/* /tmp/* /var/tmp/*
+ENV CHROME_BIN /usr/bin/google-chrome
+USER root
+CMD ["date"]
