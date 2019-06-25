@@ -8,7 +8,7 @@ from com.atlassian.jira.issue.customfields.manager import OptionsManager
 
 
 #yagyemang  will be the default assignee
-#assignee = ComponentAccessor.getUserManager().getUser("yagyemang")
+#assignee = ComponentAccessor.getUserManager().getUser("USERNAME1")
 optionsManager = ComponentAccessor.getComponent(OptionsManager)
 field = ComponentAccessor.getCustomFieldManager().getCustomFieldObjectByName('TEAMNAME')
 fieldConfig = field.getRelevantConfig(issue)
